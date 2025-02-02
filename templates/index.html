@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Price Compare & Tracker</h1>
+    <p class="text-center01">Track and compare prices of your favorite products effortlessly</p>
+    <form action="{{ url_for('scrape') }}" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="url"></label>
+            <input type="url" class="form-control" id="url" name="url" required placeholder="Paste the Amazon product link...">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="width: 20%; margin: 0 auto; border-radius: 25px; height: 50px; margin-bottom: 40px; font-size: 20px; display: block;">
+            <i class="fas fa-search"></i> Compare
+        </button>
+    </form>
+    <div class="mt-4 text-center">
+        <p>Supports major e-commerce platforms in India</p>
+        <div class="platform-logos">
+            <img src="https://t3.gstatic.com/images?q=tbn:ANd9GcTiWk0doRsCKMWriQCQXFcJtCS6dHgk97t5lvJJ3UCKy-4APpHD" alt="Flipkart" height="90" class="mx-2">
+            <img src="https://m.media-amazon.com/images/I/51HCHFclmmL.jpg" alt="Amazon" height="70" class="mx-2">
+            <img src="https://www.reliancedigital.in/build/client/images/loaders/rd_logo.svg" alt="Reliance Digital" height="40" class="mx-2">
+        </div>
+    </div>
+</div>
+{% endblock %}

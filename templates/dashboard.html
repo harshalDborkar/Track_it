@@ -1,0 +1,102 @@
+<!-- templates/ -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Welcome, {{ username }}!</h1>
+
+    <h4 class="mt-4">Your Watchlist</h4>
+    {% if watchlist.amazon or watchlist.flipkart %}
+        <div class="accordion" id="watchlistAccordion">
+            {% if watchlist.amazon %}
+                <div class="card">
+                    <div class="card-header" id="headingAmazon">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseAmazon" aria-expanded="true" aria-controls="collapseAmazon">
+                                Amazon Products
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapseAmazon" class="collapse show" aria-labelledby="headingAmazon" data-parent="#watchlistAccordion">
+                        <div class="card-body">
+                            {% for product in watchlist.amazon %}
+                                <div class="card mb-3">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-4 text-center p-3">
+                                            {% if product.image != 'N/A' %}
+                                                <img src="{{ product.image }}" class="card-img" alt="Amazon Product Image" style="max-height: 150px; object-fit: contain;">
+                                            {% else %}
+                                                <img src="{{ url_for('static', filename='no_image.png') }}" class="card-img" alt="No Image Available" style="max-height: 150px; object-fit: contain;">
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ product.name }}</h5>
+                                                <a href="{{ product.link }}" target="_blank" class="btn btn-primary">View on Amazon</a>
+                                                <form method="POST" action="{{ url_for('remove_watchlist') }}" class="d-inline">
+                                                    <input type="hidden" name="platform" value="amazon">  <!-- Platform Hidden Field -->
+                                                    <input type="hidden" name="srno" value="{{ product.srno }}">
+                                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if watchlist.flipkart %}
+                <div class="card">
+                    <div class="card-header" id="headingFlipkart">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFlipkart" aria-expanded="false" aria-controls="collapseFlipkart">
+                                Flipkart Products
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseFlipkart" class="collapse" aria-labelledby="headingFlipkart" data-parent="#watchlistAccordion">
+                        <div class="card-body">
+                            {% for product in watchlist.flipkart %}
+                                <div class="card mb-3">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-4 text-center p-3">
+                                            {% if product.image != 'N/A' %}
+                                                <img src="{{ product.image }}" class="card-img" alt="Flipkart Product Image" style="max-height: 150px; object-fit: contain;">
+                                            {% else %}
+                                                <img src="{{ url_for('static', filename='no_image.png') }}" class="card-img" alt="No Image Available" style="max-height: 150px; object-fit: contain;">
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ product.name }}</h5>
+                                                <a href="{{ product.link }}" target="_blank" class="btn btn-primary">View on Flipkart</a>
+                                                <form method="POST" action="{{ url_for('remove_watchlist') }}" class="d-inline">
+                                                    <input type="hidden" name="platform" value="flipkart">  <!-- Platform Hidden Field -->
+                                                    <input type="hidden" name="srno" value="{{ product.srno }}">
+                                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center mt-4">
+            You have no products in your watchlist.
+        </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('index') }}" class="btn btn-success"><i class="fas fa-plus"></i> Track a New Product</a>
+    </div>
+</div>
+{% endblock %}

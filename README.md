@@ -1,2 +1,2 @@
-# Track_it
-Amazon price tracker that tracks price form your wish list and alerts if price drops
+# TrackIT
+Web-based Application for Price Tracking and Price Comparisons

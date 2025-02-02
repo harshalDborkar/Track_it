@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Results</h2>
+    {% if error %}
+        <div class="alert alert-danger text-center mt-4">{{ error }}</div>
+    {% else %}
+        <div class="card mb-4">
+            <div class="row no-gutters">
+                <div class="col-md-4 text-center p-3">
+                    {% if amazon.image != 'N/A' %}
+                        <img src="{{ amazon.image }}" class="card-img" alt="Amazon Product Image" style="max-height: 200px; object-fit: contain;">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='no_image.png') }}" class="card-img" alt="No Image Available" style="max-height: 200px; object-fit: contain;">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Amazon Product</h5>
+                        <p class="card-text"><strong>Name:</strong> {{ amazon.name }}</p>
+                        <p class="card-text"><strong>Current Price:</strong> {{ amazon.price }}</p>
+                        <p class="card-text"><strong>Star Rating:</strong> {{ amazon.star_rating }}</p>
+                        <p class="card-text"><strong>Reviews:</strong> {{ amazon.reviews }}</p>
+                        <a href="{{ amazon.link }}" target="_blank" class="btn btn-primary">View on Amazon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if flipkart.name != 'N/A' %}
+            <div class="card mb-4">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Flipkart Product</h5>
+                            <p class="card-text"><strong>Name:</strong> {{ flipkart.name }}</p>
+                            <p class="card-text"><strong>Current Price:</strong> {{ flipkart.price }}</p>
+                            <a href="{{ flipkart.link }}" target="_blank" class="btn btn-primary">View on Flipkart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if reliance.name != 'N/A' %}
+            <div class="card mb-4">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Reliance Digital Product</h5>
+                            <p class="card-text"><strong>Name:</strong> {{ reliance.name }}</p>
+                            <p class="card-text"><strong>Current Price:</strong> ₹{{ reliance.price }}</p>
+                            <a href="{{ reliance.link }}" target="_blank" class="btn btn-primary">View on Reliance Digital</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+                {% if prediction %}
+                    <div class="predict">
+                {% if prediction == -1 %}
+                    <p>Price Drop Prediction:</p>
+                    <p class="price">Insufficient data</p>
+                {% elif prediction < 40 %}
+                    <p>Price Drop Prediction:</p>
+                    <p class="price">Low ({{ prediction }}%) chance of price drop</p>
+                {% elif 40 <= prediction and prediction <= 50 %}
+                    <p>Price Drop Prediction:</p>
+                    <p class="price">Moderate ({{ prediction }}%) chance of price drop</p>
+                {% else %}
+                    <p>Price Drop Prediction:</p>
+                    <p class="price">High ({{ prediction }}%) chance of price drop</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="text-center">
+            <form method="POST" action="{{ url_for('track') }}">
+                <input type="hidden" name="amazon_link" value="{{ amazon.link }}">
+                <input type="hidden" name="flipkart_link" value="{{ flipkart.link if flipkart.link else '' }}">
+                <input type="hidden" name="reliance_link" value="{{ reliance.link if reliance.link else '' }}">
+                <button type="submit" class="btn btn-success"><i class="fas fa-eye"></i> Track</button>
+            </form>
+        </div>
+    {% endif %}
+    <div class="text-center mt-6">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Go Back</a>
+    </div>
+</div>
+{% endblock %}

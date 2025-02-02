@@ -1,0 +1,218 @@
+/* static/style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: white;
+    margin: 0;
+    color: #333333;
+}
+
+h2, h3, h4, h5 {
+    color: #2c3e50;
+}
+h2{
+    margin-bottom: 20px;
+}
+
+button.btn {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.flash {
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.flash.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flash.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Card Styles */
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-img {
+    border-radius: 8px;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #0f507c;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0c4b6e;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    margin-top: 30px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-body h5 {
+        font-size: 20px;
+    }
+
+    .card-body p {
+        font-size: 18px;
+    }
+
+    .btn {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-control {
+        font-size: 14px;
+    }
+
+    button.btn {
+        font-size: 14px;
+    }
+}
+
+/* Additional Styles for Simplicity and Aesthetics */
+.text-center {
+    text-align: center;
+}
+.text-center01 {
+    margin-top: 5px;
+    text-align: center;
+    color: #333;
+    font-size: 25px;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.mt-6 {
+    margin-bottom: 2rem;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-5 {
+    margin-bottom: 3rem;
+}
+
+.p-3 {
+    padding: 1rem;
+}
+
+.p-4 {
+    padding: 1.5rem;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-link {
+    font-weight: 500;
+    color: #0f507c;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+#url {
+    width: 90%;
+    padding: 16px;
+    border: 2px solid #0077be;
+    border-radius: 25px;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: 18px;
+    margin-left: 5%;
+    height: 55px;
+}
+
